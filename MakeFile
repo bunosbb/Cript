@@ -1,0 +1,28 @@
+all: decoder encoder
+
+decoder: libcript.a libstr.a decoder.o
+	gcc decoder.o libcript.a libstr.a -o decoder
+
+encoder: libcript.a libstr.a encoder.o
+	gcc encoder.o libcript.a libstr.a -o encoder
+
+libcript.a: cript.o
+	ar -rc libcript.a cript.o
+
+libstr.a: str_util.o
+	ar -rc libstr.a str_util.o
+
+decoder.o:
+	gcc -c decoder.c -std=c99
+
+encoder.o:
+	gcc -c encoder.c -std=c99
+
+cript.o:
+	gcc -c cript.c -std=c99
+
+str_util.o:
+	gcc -c str_util.c -std=c99
+
+clean:
+	rm -rf *.o *.a encoder decoder
