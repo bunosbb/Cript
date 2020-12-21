@@ -48,23 +48,22 @@ char* immutableToUpper (const char* str) {
 
 void mutableStrip (char* str) {
     unsigned int size = len(str);
-    unsigned int l = 0;
+    int l = 0;
     while (l < size && str[l] == ' ') {
         ++l;
     }
-    unsigned int r = size - 1;
+    int r = size - 1;
     while (r >= 0 && str[r] == ' ') {
         --r;
     }
-    char* buff = (char*)malloc((r - l + 2) * sizeof(char));
-    for (int i = l; i <= r; ++i) {
-        buff[i - l] = str[i];
+    if (r < l) {
+        str[0] = '\0';
+        return;
     }
-    for (int i = 0; i < r - l + 1; ++i) {
-        str[i] = buff[i];
+    for (int i = l; i <= r; ++i) {
+        str[i - l] = str[i];
     }
     str[r - l + 1] = '\0';
-    free(buff);
 }
 char* immutableStrip (const char* str) {
     char* result;
