@@ -1,5 +1,6 @@
 #include "str_util.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 unsigned int len (const char* str) {
     unsigned int size = 0;
@@ -9,26 +10,25 @@ unsigned int len (const char* str) {
     return size;
 }
 
-void strCopy (char** dest, const char* src) {
+void strCopy (char* dest, const char* src) {
     unsigned int size = len(src);
-    *dest = (char*)malloc((size + 1) * sizeof(char));
     for (int i = 0; i < size; ++i) {
-        (*dest)[i] = src[i];
+        dest[i] = src[i];
     }
-    (*dest)[size] = '\0';
+    dest[size] = '\0';
 }
 
 void mutableToLower (char* str) {
     int size = len(str);
     for (int i = 0; i < size; ++i) {
         if ('A' <= str[i] && str[i] <= 'Z') {
-            str[i] -= 'A' + 'a';
+            str[i] = 'a' + (str[i] - 'A');
         }
     }
 }
 char* immutableToLower (const char* str) {
     char* result;
-    strCopy(&result, str);
+    strCopy(result, str);
     mutableToLower(result);
 }
 
@@ -42,7 +42,7 @@ void mutableToUpper (char* str) {
 }
 char* immutableToUpper (const char* str) {
     char* result;
-    strCopy(&result, str);
+    strCopy(result, str);
     mutableToUpper(result);
 }
 
@@ -67,7 +67,7 @@ void mutableStrip (char* str) {
 }
 char* immutableStrip (const char* str) {
     char* result;
-    strCopy(&result, str);
+    strCopy(result, str);
     mutableStrip(result);
     return result;
 }
@@ -86,7 +86,7 @@ void mutableRemoveSpaces (char* str) {
 }
 char* immutableRemoveSpaces (const char* str) {
     char* result;
-    strCopy(&result, str);
+    strCopy(result, str);
     mutableRemoveSpaces(result);
     return result;
 }
@@ -109,7 +109,7 @@ void mutableFilter (char* str) {
 }
 char* immutableFilter (const char* str) {
     char* result;
-    strCopy(&result, str);
+    strCopy(result, str);
     mutableFilter(result);
     return result;
 }

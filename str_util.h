@@ -5,7 +5,7 @@
 
 unsigned int len (const char* str);
 
-void strCopy (char** dest, const char* src);
+void strCopy (char* dest, const char* src);
 
 void mutableToLower (char* str);
 char* immutableToLower (const char* str);
