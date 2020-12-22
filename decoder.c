@@ -15,12 +15,18 @@ int main(int argc, char** argv) {
         if (isEqualStr(argv[1], "--caesar")) {
             if (!strToInt(argv[3], &key)) {
                 printf("ERROR: key must be number for cessar decode\n");
+                free(type);
+                free(text);
+                free(strKey);
                 return 0;
             }
         }else if (isEqualStr(argv[1], "--xor")) {
             strCopy(strKey, argv[3]);
         } else {
             printf("ERROR: decode type maust be --caesar or --xor\n");
+            free(type);
+            free(text);
+            free(strKey);
             return 0;
         }
         strCopy(type, argv[1]);
@@ -37,15 +43,24 @@ int main(int argc, char** argv) {
         if (isEqualStr(type, "caesar")) {
             if (!strToInt(strKey, &key)) {
                 printf("ERROR: key must be number for caesar decode\n");
+                free(type);
+                free(text);
+                free(strKey);
                 return 0;
             }
         }else if (!isEqualStr(type, "xor")) {
             printf("ERROR: decode type maust be caesar or xor\n");
+            free(type);
+            free(text);
+            free(strKey);
             return 0;
         }
     } else {
         printf("Invalid input.\n");
         printf("Valid input is \"./decoder --caesar text key\" or \"./decoder --xor text key\"\n");
+        free(type);
+        free(text);
+        free(strKey);
         return 0;
     }
     mutableFilter(type);
@@ -59,5 +74,8 @@ int main(int argc, char** argv) {
     for (int i = 0; i < size; ++i) {
         printf("%c", text[i]);
     }
+    free(type);
+    free(text);
+    free(strKey);
     printf("\n");
 }
