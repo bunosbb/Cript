@@ -1,5 +1,4 @@
 #include "cript.h"
-#include <stdio.h>
 
 void mutableCaesarEncode (char* str, int key) {
     unsigned int size = len(str);

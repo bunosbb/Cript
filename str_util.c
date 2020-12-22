@@ -1,6 +1,5 @@
 #include "str_util.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 unsigned int len (const char* str) {
     unsigned int size = 0;
