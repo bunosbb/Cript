@@ -4,7 +4,7 @@ void mutableCaesarEncode (char* str, int key) {
     unsigned int size = len(str);
 
     for (int i = 0; i < size; ++i) {
-        str[i] = (str[i] + key + ALP_SIZE) % ALP_SIZE;
+        str[i] += key;
     }
 }
 char* immutableCaesarEncode (const char* str, int key) {

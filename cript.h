@@ -1,8 +1,6 @@
 #ifndef _CRIPT_H_
 #define _CRIPT_H_
 
-#define ALP_SIZE 256
-
 #include "str_util.h"
 
 void mutableCaesarEncode (char* str, int key);
